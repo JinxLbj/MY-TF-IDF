@@ -1,0 +1,413 @@
+作者 | Cooper Song
+
+责编 | 刘静
+
+出品 | CSDN（ID：CSDNnews）
+
+二分查找也叫折半查找(Binary Search)，是一种时间复杂度为O(logn)，因为它可以每次都将查找范围缩小为原来的一半。它要求查找序列要有序。然而这里所说的“有序”，你真正理解了吗？
+
+ 
+
+640?wx_fmt=png
+
+数字的二分查找
+ 
+
+先描述一下最简单的二分查找算法：
+
+先设返回值为-1，如果找不到的话就返回-1。
+
+设置两个指针，left和right，left最开始指向第一个元素的下标，right最开始指向最后一个元素的下标，每次查找都要找到中间值值的下标mid=(left+right)/2，让中间值arr[mid]跟查找值target进行比较。
+
+如果查找值target等于中间值arr[mid]，这说明找到了查找值target，直接返回mid作为查找值target的下标；
+
+如果查找值target小于中间值arr[mid]，这说明查找值target如果存在的话一定位于中间值的左边，因此我们将right置为mid-1，这样下次需要查找的序列就变成了从left到mid-1；
+
+如果查找值target大于中间值arr[mid]，这说明查找值target如果存在的话一定位于中间值的右边，因此我们将left置为mid+1，这样下次需要查找的序列就编程了从mid+1到right。
+
+如此循环，直到left>right结束。
+
+简单二分查找的代码：
+
+int binarySearch(int target)
+{
+    int ret=-1;
+    int len=arr.size();
+    int left=0;
+    int right=len-1;
+    while(left<=right)
+    {
+        int mid=(left+right)/2;
+        if(target==arr[mid])
+        {
+            ret=mid;
+            break;
+        }
+        else if(target<arr[mid])
+        {
+            right=mid-1;
+        }
+        else
+        {
+            left=mid+1;
+        }
+    }
+    return ret;
+}
+看一个最简单的二分查找的例子：
+
+640?wx_fmt=png
+
+序列：arr=[-2,0,5,9,15,30,32,79]
+
+查找值：target=3
+
+下面开始二分查找，橙色部分为left，黄色部分为right，绿色部分为mid。
+
+640?wx_fmt=png
+
+第一次查找，left=0，right=7，mid=3，arr[mid]=9，因为3<9，所以将right置为mid-1=2。下次应该在[0,2]之间进行查找。
+
+640?wx_fmt=png
+
+第二次查找，left=0，right=2，mid=1，arr[mid]=0，因为3>0，所以将left置为mid+1=2。下次应该在[2,2]之间找。
+
+640?wx_fmt=png
+
+第三次查找，left=2，right=2，mid=2，arr[mid]=5，因为3<5，所以将right置为mid-1=1。此时left=2，right=1，left>right，跳出循环，序列中不存在3这个值。
+
+640?wx_fmt=png
+
+我们再来看一个能查找到值得例子：
+
+640?wx_fmt=png
+
+序列：arr=[-2,0,5,9,15,30,32,79]
+
+查找值：target=79
+
+640?wx_fmt=png
+
+第一次查找，left=0，right=7，mid=3，arr[mid]=9，因为79>9，所以将left置为mid+1=4。下次应该在[4,7]之间进行查找。
+
+640?wx_fmt=png
+
+第二次查找，left=4，right=7，mid=5，arr[mid]=30，因为79>30，所以将left置为mid+1=6。下次应该在[6,7]之间进行查找。
+
+640?wx_fmt=png
+
+第三次查找，left=6，right=7，mid=6，arr[mid]=32，因为79>32，所以将left置为mid+1=7。下次应该在[7,7]之间进行查找。
+
+640?wx_fmt=png
+
+第四次查找，left=7，right=7，mid=7，arr[mid]=79，因为79==79，所以此刻查找到了查找值target，返回它的下标mid=7。
+
+ 
+
+640?wx_fmt=png
+
+还可以针对什么进行二分查找呢？
+ 
+
+英文有26个字母，按照abc...xyz的顺序排列，这就使得字母有了顺序，也就使得字符串有了字典序(alphabetical order)。
+
+所谓字典序，就是指两个字符串从前往后挨个字符比较，如果出现字符串str1的某一位上的字母在字母表中排在字符串str2的相同位的字母的前面，则称str1<str2。举个简单的例子，"bicycle"和"binary"，'b'和'i'都是相同的，比到第三位的时候，'c'在字母表中的顺序排在'n'的前面，因此"bicycle"小于"binary"。还有一种特殊情况，就是一直比较比到其中有一个字符串没有字母可以比较时，短的字符串就小于长的字符串。再举个简单的例子，"alpha"和"alphabetical"，"alpha"就小于"alphabetical"。
+
+640?wx_fmt=png
+
+例如arr=["action","bicycle","binary","code","download"]就是一个按字典序排列的序列，我要在里面查找"bicycle"这个单词。
+
+640?wx_fmt=png
+
+第一次查找，left=0，right=4，mid=2，arr[mid]="binary"，因为"bicycle"的字典序小于"binary"，所以将right置为mid-1=1。下次应该在[0,1]之间进行查找。
+
+640?wx_fmt=png
+
+第二次查找，left=0，right=1，mid=0，arr[mid]="action"，因为"bicycle"的字典序大于"action"，所以将left置为mid+1=1。下次应该在[1,1]之间进行查找。
+
+640?wx_fmt=png
+
+第三次查找，left=1，right=1，mid=1，arr[mid]="bicycle"，因为"bicycle"的字典序等于"bicycle"的字典序，所以此刻查找到了"bicycle"，返回下标mid=1。
+
+读到这里，我可以跟大家坦白了，以上的仅仅是二分查找的开胃菜。
+
+ 
+
+640?wx_fmt=png
+
+二分查找能否用于“看似无序”的序列
+ 
+
+一道LeetCode算法题奉上：
+
+https://leetcode-cn.com/problems/find-in-mountain-array/
+
+这道题是在说，在一个数组中，它的元素中存在一个峰值，峰值左右两边的元素都比它小，然后给出一个查找值target，让你找到元素值等于target的最小下标，如果没有就返回-1。
+
+峰值左边的元素由小到大排列，峰值右边的元素由大到小排列，整个数组毫无疑问是无序的，但它是部分有序的，如下图所示：
+
+640?wx_fmt=png
+
+如果单纯在峰值左边或是峰值右边都可以进行二分查找。可是问题来了，要如何在茫茫人海中找到峰值呢？
+
+细心的朋友已经发现了：
+
+如果遇到一个元素，它的左边元素比它小，右边元素比它大，那么峰值一定在它的右边；
+
+如果遇到一个元素，它的左边元素比它大，右边元素比它小，那么峰值一定在它的左边；
+
+如果遇到一个元素，它的左边元素比它小，右边元素也比它小，那么它就是峰值！
+
+根据以上规律，就可以写一个二分查找峰值的算法了。
+
+int findSummit(vector<int> arr)
+{
+   int len=arr.size();
+   int left=0;
+   int right=len-1;
+   while(left<=right)
+   {
+       int mid=(left+right)/2;
+       int pre=arr[mid-1];
+       int now=arr[mid];
+       int aft=arr[mid+1];
+       if(pre<now&&now>aft)
+       {
+           return mid;
+       }
+       else if(pre<now&&now<aft)
+       {
+           //峰值在右边
+           left=mid+1;
+       }
+       else
+       {
+           //峰值在左边
+           right=mid;
+       }
+   }
+   return -1;
+}
+这里与简单二分查找略有不同的是峰值如果在左边right置为mid而不是mid-1，这是为了防止数组越界，大家可以思考一下为什么，本文主要介绍二分思想就不再过多介绍了。
+
+找到了峰值的位置（下标），我们再去找target就易如反掌了，可以直接套用简单二分查找算法的模板。既然题目要求找到等于target的元素的最小下标，我们就先找左边，即[0,summit]；再找右边，即[summit,len-1]。summit为峰值下标，len为序列长度。
+
+以下代码为通过该题的代码：
+
+/**
+* // This is the MountainArray's API interface.
+* // You should not implement it, or speculate about its implementation
+* class MountainArray {
+*   public:
+*     int get(int index);
+*     int length();
+* };
+*/
+class Solution {
+public:
+   int findInMountainArray(int target, MountainArray &mountainArr) {
+       int len=mountainArr.length();
+       int left=0;
+       int right=len-1;
+       int summit=-1;
+       int mid=-1;
+       while(left<=right)
+       {
+           mid=(left+right)>>1;
+           int pre=mountainArr.get(mid-1);
+           int now=mountainArr.get(mid);
+           int aft=mountainArr.get(mid+1);
+           if(pre<now&&now>aft)
+           {
+               summit=mid;
+               break;
+           }
+           else if(pre<now&&now<aft)
+           {
+               left=mid+1;
+           }
+           else
+           {
+               right=mid;
+           }
+       }
+       left=0;
+       right=summit;
+       while(left<=right)
+       {
+           mid=(left+right)>>1;
+           int now=mountainArr.get(mid);
+           if(target==now)
+           {
+               return mid;
+           }
+           else if(target<now)
+           {
+               right=mid-1;
+           }
+           else
+           {
+               left=mid+1;
+           }
+       }
+       left=summit;
+       right=len-1;
+       while(left<=right)
+       {
+           mid=(left+right)>>1;
+           int now=mountainArr.get(mid);
+           if(target==now)
+           {
+               return mid;
+           }
+           else if(target>now)
+           {
+               right=mid-1;
+           }
+           else
+           {
+               left=mid+1;
+           }
+       }
+       return -1;
+   }
+};
+640?wx_fmt=png
+
+ 
+
+640?wx_fmt=png
+
+ 
+
+640?wx_fmt=png
+
+常用的在二分查找中节省时间的小技巧
+ 
+
+那就是在计算mid的时候，不再使用(left+right)/2而是(left+right)>>1，>>是位运算符，学习过计算机组成原理的朋友都知道，位运算要比加法运算快得多，而右移一位就相当于除以2，举个例子，二进制数1000代表十进制数8，右移一位变成了0100，也就是十进制数4。
+
+又一道LeetCode算法题奉上：
+
+https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
+
+这道题是在说，一个原本有序的数组，有可能某处之前的元素按照原来的顺序放在了数组的末尾，然后在这样一个数组中查找值target。
+
+同样是一个毫无疑问无序但又部分有序的数组，它的整体走向如下图所示：
+
+640?wx_fmt=png
+
+我们首先要做的，仍然是找到峰值，只要找到峰值就能把数组划分成有序的两部分，那么问题来了，要如何找到峰值呢？
+
+显然这道题目不能通过单调趋势确定峰值的位置，因为两部分都是单调递增的，但是我们知道左半部分的最小值和右半部分的最大值，左半部分的最小值就是数组的第一个元素，右半部分的最大值就是数组的最后一个元素。
+
+遇到一个元素只要它不是峰值：
+
+如果它小于右半部分的最大值，峰值就位于它的左边；
+
+否则，峰值就位于它的右边。
+
+如果它是峰值，此时有两种情况：
+
+它是第一个元素，只要它大于它右边的元素它就是峰值；
+
+它不是第一个元素，只要它大于它左右两边的元素它就是峰值。
+
+在这个题中，还直接根据target推得target只可能位于数组的那一部分：只要大于等于左半部分的最小值就肯定位于左半部分；
+
+只要小于等于右半部分的最大值就肯定位于右半部分。
+
+剩下的就是简单二分查找了。
+
+以下代码为通过该题的代码：
+
+class Solution {
+public:
+   vector<int> nums;
+   int len;
+   int rvalue;
+   int left,right;
+   int findSummit()
+   {
+       while(left<=right)
+       {
+           int mid=(left+right)>>1;
+           if((mid==0&&mid+1<len&&nums[mid]>nums[mid+1])||(mid-1>=0&&mid+1<len&&nums[mid]>nums[mid-1]&&nums[mid]>nums[mid+1]))
+           {
+               return mid;
+           }
+           else if(nums[mid]<rvalue)
+           {
+               right=mid-1;
+           }
+           else
+           {
+               left=mid+1;
+           }
+       }
+       return -1;
+   }
+   int search(vector<int>& nums, int target) {
+       this->nums=nums;
+       len=nums.size();
+       if(len==0)
+       {
+           return -1;
+       }
+       //右半部分最大值
+       rvalue=nums[len-1];
+       left=0;
+       right=len-1;
+       int summit=findSummit();
+       if(target>rvalue)
+       {
+           //在左半部分
+           left=0;
+           right=summit;
+       }
+       else
+       {
+           //在右半部分
+           left=summit+1;
+           right=len-1;
+       }
+       while(left<=right)
+       {
+           int mid=(left+right)>>1;
+           if(target==nums[mid])
+           {
+               return mid;
+           }
+           else if(target<nums[mid])
+           {
+               right=mid-1;
+           }
+           else
+           {
+               left=mid+1;
+           }
+       }
+       return -1;
+   }
+};
+640?wx_fmt=png
+
+640?wx_fmt=png
+
+ 
+
+640?wx_fmt=png
+
+总结
+ 
+
+二分查找不仅仅适用于有序的序列，在部分有序、有规律可循的序列中查找值也可以使用二分查找，只要可以将搜索区域不断缩小，就可以想到二分查找。
+
+作者简介：Cooper Song，大学计算机专业在校生，本科在读，学生开发者。
+
+声明：本文系作者独立观点，不代表CSDN立场。
+
+文章最后发布于: 2019-11-13 17:43:26
+有 0 个人打赏
+私信求帮助
+深入理解二分查找

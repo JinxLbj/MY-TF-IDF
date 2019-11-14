@@ -1,0 +1,557 @@
+1.本门课的作用（JavaScript的作用）所有基于Web的程序开发基础
+
+2.一种计算机客户端脚本语言，主要在Web浏览器解释执行。
+
+3.浏览器中Javascript，用于与用户交互，以及实现页面中各种动态特效
+
+4.在HTML文件中，任何JavaScript代码必须放到<script>标签中
+
+5.把JavaScript代码放到外部文件中，在HTML代码中直接引入该文件(外部文件定义为：*.js)
+
+
+
+6.就算语法特点：
+
+– 类C语言
+
+– 弱类型：变量的数据类型可以任意转换
+
+7. • 单行注释：//
+
+  • 多行注释：/* */
+
+8.JavaScript中5种内置数据类型：Number、String、Boolean、Undefined、Null
+
+9. 获得变量在某一时刻的数据类型，使用typeof运算符
+
+10. 转换为Number类型：parseInt()、parseFloat()
+
+– 转换为String类型：原变量 + ‘’
+
+– 转换为Boolean类型：变量之前加 !!
+
+
+
+11. ==：值相等则为true
+
+– ===：类型和值都须相同则为true
+
+12.CSS选择器的作用：选择具有一定特征的元素，应用某一种样式
+
+13.选择器就是一些公用的代码段
+
+14.函数：完成特定功能的一段代码
+
+– 可重用性
+
+– 任务分解
+
+函数的要素：函数名、函数参数、函数返回值
+16.•JS中函数分类：
+
+– JS内置函数：如parseInt( )、eval( )、alert( )、
+
+– 自定义函数
+
+使用function关键字定义函数
+调用方式
+– 直接调用  --通过事件触发
+
+19.在函数体内，形参其实就是一个变量，函数调用时，一方面可以通过参数向函数传递
+
+数据，另一方面也可以从函数获取数据。
+
+return语句不带表达式时仍会返回值，该值为Undefined
+在一个函数定义的函数体语句中出现对另一个函数的调用，这就是函数的嵌套调用
+事件：能被JavaScript检测到的活动
+– 用户动作（鼠标或键盘操作等）
+
+– 状态变化（加载、改变文本框内容等）
+
+常用事件类型
+—页面加载事件 —图片事件 —表单事件 —键盘和鼠标事件
+
+24.获得字符串的长度
+
+– 通过字符串变量的length属性获得
+
+25.根据位置截取一段子串
+
+– 通过字符串变量的substr()方法
+
+参数1：截取的开始位置
+
+参数2：截取的长度
+
+26.查找子串
+
+– indexOf()方法，参数：要查找的子串
+
+字符串定义： 单引号或双引号定义
+字符串常用操作：
+
+– 字符串长度：length属性
+
+– 截取子串：substr( )方法
+
+– 查找子串：indexOf( )方法
+
+– 字符串连接运算符： + +=
+
+数组用来在单独的变量中存储一系列的值
+定义数组：
+
+– 方式一：通过[ ]方式
+
+例：var arr1 = [‘a’,‘b’,‘c’];
+
+– 方式二：通过new Array方式
+
+var arr2 =new Array(‘a’,‘b’,‘c’);
+
+JavaScript：是一门基于对象的语言， 对象具有一些属性和行为
+属性：
+
+– 通过变量来表示
+
+行为
+
+– 通过函数来实现
+
+30. 访问对象属性/方法
+
+– 方式一：通过 对象名 . 属性名 、对象名 . 方法名( )
+
+– 方式二：通过 对象名[“属性名” ]
+
+ 修改对象属性
+
+– 直接赋值给对象属性
+
+31.删除对象属性
+
+– 使用delete关键字
+
+构造函数的形参用于赋给对象的属性
+在构造函数中，使用this指代对象
+对象的属性和方法必须通过this访问
+通过new 关键字来通过构造函数创建对象
+JavaScript包含的对象
+– 自定义对象
+
+– 内置对象
+
+– 浏览器对象（BOM）
+
+– 文档对象（DOM）
+
+String对象处理字符串相关操作
+– 获取字符长度
+
+– 判断子串位置
+
+– 截取子串
+
+
+
+Array对象的使用
+
+常用操作
+
+– 获取数组长度
+
+– 向数组末尾增加元素
+
+– 从数组末尾获取元素
+
+
+
+Math对象的使用
+
+常用操作
+
+– 四舍五入：Math. round( )
+
+– 向下取整：Math.floor( )
+
+– 生成随机数：Math.random( )
+
+– 取到最大值：Math.max( )
+
+– 取到最小值：Math.min( )
+
+Date对象的使用
+
+Date对象包含了一系列的日期时间处理的功能
+
+– 创建Date对象，例： var now= new Date( );
+
+•常用操作
+
+– 获取当前日期时间： toLocaleString( )
+
+– 获取年份、月份、日期：getFullYear()、 getMonth()、getDate()
+
+– 获取小时、分钟、秒钟： getHours()、 getMinutes()、getSeconds()
+
+JavaScript的对象就是一些属性和方法的集合
+属性的实质是一些数据，在程序中用变量保存
+方法的实质是一些行为，在程序中用函数实现
+创建对象，使用{ } ，括号内部为属性名：属性值或方法名：方
+法体，属性和属性间用逗号分隔
+
+通过.符号访问对象中的属性或方法，通过[ ]访问对象中的属性或方法
+BOM作用：•弹出窗口•计数器•自动跳转页面•获得浏览器信息•图片切换
+44.BOM综述
+
+BrowserObject浏览器提供的用户与浏览器窗口之间交互的对象及操作的接口。
+
+Model 这些对象并不是独立存在的，对象与对象之间存在着层次结构，对象模型的作用就是描述这些层次结构。
+
+弹出提示窗口alert();例：window.alert(‘你确定要关闭此窗口吗？’);
+  弹出确认窗口 confirm()； 例：window.confirm(‘你确定要关闭此窗口吗？’);
+
+  弹出输入框 prompt()； 例：window.prompt(‘请输入你的评价, 1(满意) 2(一般)’);
+
+  延迟执行 setTimeout()； – setTimeout( code , millisec )
+
+           clearTimeout() – clearTimeout( id_of_settimeout )
+
+  定时执行 setInterval() – setInterval( code , millisec ）;
+
+           clearInterval() – clearInterval( id_of_setinterval
+
+  打开/关闭窗口  open () ; close();
+
+使用document对象 常用方法：document.write()
+  子对象
+
+– forms
+
+– images
+
+– links
+
+– anchors
+
+– location
+
+   使用history对象 history对象可以访问浏览器窗口的浏览历史
+
+子对象
+
+-Back();  -forward();  -go();
+
+   使用location对象 location对象包含当前窗口的URL信息。
+
+   使用navigator对象 navigator对象包含浏览器的信息，浏览器的类型、版本信息都可以从中获取。
+
+   使用srceen对象 screen对象包含客户端屏幕的相关信息。
+
+子对象
+
+-height();  -width();
+
+47.DOM（Document Object Model）：文档对象模型
+
+– 浏览器提供的操作HTML文档内容的应用程序接口
+
+– 用于对文档进行动态操作，如增加文档内容、删除文档内容、修改文档内容等等
+
+48.DOM的核心就是对DOM树的操作，即增加、删除、修改DOM树中的内容
+
+DOM节点是一个对象（属性和方法）
+访问DOM节点
+通过id属性获得节点：
+
+document.getElementById( )
+
+•通过标签名获得所有同名标签：document(或某一节点对象).getElementsByTagName( )
+
+•通过父节点获得子节点：node.childNodes[ ]、node.firstChild、node.lastChild
+
+•通过子节点获得父节点：node.parentNode
+
+•获得前后兄弟节点：node.previous(next)Sibling
+
+51.获得某一元素节点的属性节点
+
+– 标准方式获得属性：node.getAttribute(  name )
+
+– 简单方式获得属性：node. attrName
+
+•修改某一元素节点的属性节点
+
+– 直接赋值给属性
+
+52.获得某一元素节点的相关信息
+
+– 节点类型：node.nodeType
+
+– 节点标签名：node.nodeName
+
+•获得文本节点的文本值：node.nodeValue
+
+53.生成一个 DOM节点
+
+– 生成一个元素节点： document.createElement( )
+
+– 生成一个文本节点：document.createTextNode( )
+
+•把生成的节点作为某一个节点（ node）的子节点
+
+– 作为node节点的最后一个子节点：
+
+node.appendChild( newNode )
+
+– 插入到node节点中某一子节点之前：
+
+node.insertBefore( newNode, oldNode )
+
+54. 删除一个元素节点、文本节点
+
+– 通过父节点删除本节点：myParent.removeChild(mySelfNode )
+
+– 通过自己删除本节点：
+
+mySelfNode.parentNode.removeChild(mySelfNode )
+
+• 删除一个属性节点： node.attrName = ‘’;
+
+55修改一个元素节点（新节点替换旧节点）：
+
+oldNode.parentNode.replaceChild (newNode, oldNode )
+
+•修改一个文本节点（替换文本值）：
+
+textNode.nodeValue = “”;
+
+•修改一个属性节点（覆盖原有属性）：
+
+node.attrName = ‘newAttrValue’;
+
+56.程序原则：
+
+– 应尽量使用节点对象属性的方式来绑定事件处理函数
+
+– 尽量避免HTML标记属性中绑定事件处理函数
+
+57.DOM中每个元素结点都有一个style对象管理元素的样式
+
+58访问样式表
+
+使用document.styleSheets属性
+
+– 包含了页面上所有样式表的引用
+
+– 数组
+
+•每个styleSheets属性指定一个cssRules集合，包含所有定义在样式表中的规则
+
+– 注意：在IE中为“rules”
+
+59.第三方库Prototype 、MooTools、Dojo Toolkit、
+
+60jQuery的一大贡献就是将行为与结构分离
+
+61jQuery选择器
+
+基本功能
+
+快速、精确地选择某一个（某一组）元素
+
+返回该元素（组）的jQuery包装集
+
+优势
+
+ 简洁
+
+ 强大
+
+62选择器类别划分
+
+ 
+
+标签选择器： var  div  =  $(‘div’);
+
+类选择器： var  toHidden  =  $(‘.toHidden’);
+
+ID选择器： var  toExten  =  $(‘#toExten’);
+
+群选择器： var  nodes  =  $(‘div,  p,  ul,  ol’);
+
+通用选择器：var  anyNodes  =  $(‘*’);
+
+ 
+
+基本选择器
+
+ 层次选择器
+
+ 过滤选择器
+
+ 表单选择器
+
+ 表单过滤选择器
+
+基本过滤器（下标从0开始）
+
+         :first、:last、:not(selector)、:even、:odd、:eq(index)
+
+         :gt(index)、:lt(index)
+
+内容过滤选择器
+
+          :contains(text)、:empty、:has(selector)
+
+可见性过滤选择器：:hidden、:visible
+
+属性过滤选择器
+
+         [attribute]、[attribute=value]、[attribute!=value]
+
+第index个子元素（下标从1开始）
+
+          :nth-child(index/even/odd/equation)
+
+第1个子元素           :first-child
+
+最后1个子元素：  :last-child
+
+选取<input>、<textarea>、<select>和<button>元素   :input
+
+选取所有文本框（<input type=“text”/>）  :text
+
+选取所有密码框：                 :password
+
+选取所有单选按钮：            :radio
+
+选取所有多选按钮：            :checkbox
+
+选取所有提交按钮：            :submit
+
+选取所有重置按钮：            :reset
+
+选取所有文件上传域：                 :file
+
+选取所有图像按钮：            :image
+
+选取所有按钮：                     :button
+
+选取所有隐藏域（<input type=“hidden”/>）：       :hidden
+
+选取所有可用元素：                 :enabled
+
+选取所有不可用的元素：           :disabled
+
+选取所有被选中的元素：       :checked
+
+选取所有被选中的下拉列表项：:selected
+
+使用选择器获取的对象为jQuery包装集（jQuery对象）
+jQuery包装集和DOM对象转化
+DOM→jQuery：使用  $( )  包装
+
+jQuery→DOM：数组下标方式、get( )方法获得
+
+文档就绪事件是jQuery中扩展的一个新事件
+作用：替代window.onload事件
+
+写法：
+
+                          $(document).ready(function(){ //..文档就绪后的处理函数})
+
+66.this在事件处理函数中，同原生JS一样，指代触发事件的DOM对象
+
+通常通过$(this)的方法将DOM对象转换为jQuery对象
+
+jq绑定事件的方法  -通过事件方法 -通过bind方法
+jQuery文档操作
+查找节点
+
+插入节点
+
+删除节点
+
+设置和获取HTML、文本和值
+
+69获取用户名控件节点
+
+var $userName = $('input[name="username"]');
+
+获取密码控件节点
+
+var $pswd = $('input[name="pswd"]');
+
+获取标题节点
+
+var $h1 = $('h1');
+
+70text()：返回或设置匹配元素的文本内容
+
+返回匹配元素的文本内容
+
+$p_con = $(‘p’).text()
+
+设置匹配元素的文本内容
+
+$p_content = $(‘p’).text(‘你不喜欢的水果是？’);
+
+71设置和获取属性 ：attr()
+
+设置属性：$(‘p’).attr(‘title’,‘最不爱的水果是’);
+
+获取属性：$(‘p’).attr(‘title’);
+
+删除属性：removeAttr()
+
+$(‘p’).removeAttr(‘title);
+
+72添加类：addClass()
+
+向匹配的元素中追加一个类
+
+$(‘li’).addClass(‘bgcolor’);
+
+删除类：removeClass()
+
+删除匹配的元素中指定的类
+
+$(‘li’).removeClass(‘bgcolor’);
+
+删除匹配元素的所有类
+
+$(‘li’).removeClass();
+
+73设置和获取匹配元素的CSS样式 ：css()
+
+获取样式：$(‘li’).css(‘title’);
+
+设置样式：$(‘li’).css(‘padding’,’15px’);
+
+设置多个样式：$(‘li’).css({
+
+ "color":"white",
+
+  "font-size":"20px",
+
+  "padding":"5px"
+
+} )
+
+74父节点
+
+子节点
+
+兄弟节点：silblings()
+
+$sibNode s= $(‘ul’).siblings();
+
+上一个节点：prev()
+
+$preNode = $(‘ul’).prev()
+
+下一个节点：next()   $nxtNode = $(‘ul’).next()
+————————————————
+版权声明：本文为CSDN博主「兔子hebtu666」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/hebtu666/article/details/102886995
